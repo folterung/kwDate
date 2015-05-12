@@ -13,4 +13,4 @@ d.daysBetween(’03/15/2015’) //returns the number of days between the initial
 
 Return a date from the point of the initial data (takes positive and negative numbers):
 
-d.getDateAt(5);
+  d.getDateAt(5);
