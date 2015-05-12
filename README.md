@@ -8,7 +8,7 @@
 
     var d = new kwDate();
 
-Return a date flattenedto the earliest time of the day:
+Return a date flattened to the earliest time of the day:
 
     new kwDate('03/10/2015').normalize(); 
     //returns kwDate object that has 0 hours, 0 minutes, 0 seconds, 0 milliseconds
