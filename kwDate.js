@@ -6,27 +6,19 @@ function kwDate(date) {
 
     function compare(thisDate) {
         var context = thisDate;
-        var curDateUTC;
-        var targetDateUTC;
 
         return {
             before: function(d) {
                 d = normalize.call(_forceDate(d));
-                curDateUTC = _getUTC(context);
-                targetDateUTC = _getUTC(d);
-                return curDateUTC < targetDateUTC;
+                return _getUTC(context) < _getUTC(d);
             },
             after: function(d) {
                 d = normalize.call(_forceDate(d));
-                curDateUTC = _getUTC(context);
-                targetDateUTC = _getUTC(d);
-                return curDateUTC > targetDateUTC;
+                return _getUTC(context) > _getUTC(d);
             },
             equal: function(d) {
                 d = normalize.call(_forceDate(d));
-                curDateUTC = _getUTC(context);
-                targetDateUTC = _getUTC(d);
-                return curDateUTC === targetDateUTC;
+                return _getUTC(context) === _getUTC(d);
             }
         };
     }
