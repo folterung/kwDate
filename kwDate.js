@@ -53,10 +53,7 @@ function kwDate(date) {
         var d1 = normalize.call(this);
         var d2 = normalize.call(d);
 
-        var d1UTC = Date.UTC(d1.getFullYear(), d1.getMonth(), d1.getDate());
-        var d2UTC = Date.UTC(d2.getFullYear(), d2.getMonth(), d2.getDate());
-
-        return Math.round(Math.abs(d1UTC - d2UTC) / _day);
+        return Math.round(Math.abs(_getUTC(d1) - _getUTC(d2)) / _day);
     }
 
     function getDateAt(days) {
