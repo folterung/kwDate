@@ -12,20 +12,20 @@ function kwDate(date) {
         return {
             before: function(d) {
                 d = normalize.call(_forceDate(d));
-                curDateUTC = Date.UTC(context.getFullYear(), context.getMonth(), context.getDate());
-                targetDateUTC = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());
+                curDateUTC = _getUTC(context);
+                targetDateUTC = _getUTC(d);
                 return curDateUTC < targetDateUTC;
             },
             after: function(d) {
                 d = normalize.call(_forceDate(d));
-                curDateUTC = Date.UTC(context.getFullYear(), context.getMonth(), context.getDate());
-                targetDateUTC = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());
+                curDateUTC = _getUTC(context);
+                targetDateUTC = _getUTC(d);
                 return curDateUTC > targetDateUTC;
             },
             equal: function(d) {
                 d = normalize.call(_forceDate(d));
-                curDateUTC = Date.UTC(context.getFullYear(), context.getMonth(), context.getDate());
-                targetDateUTC = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());
+                curDateUTC = _getUTC(context);
+                targetDateUTC = _getUTC(d);
                 return curDateUTC === targetDateUTC;
             }
         };
@@ -63,6 +63,10 @@ function kwDate(date) {
         var tempDate = new Date(normalize.call(this));
         tempDate.setDate(tempDate.getDate() + days);
         return _extend(tempDate);
+    }
+
+    function _getUTC(d) {
+        return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());
     }
 
     function _extend(d) {
