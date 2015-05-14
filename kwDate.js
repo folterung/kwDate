@@ -4,23 +4,36 @@ function kwDate(date) {
     date = typeof date !== 'undefined' ? _forceDate(date) : new Date();
     date = _extend(date);
 
-    function compare(thisDate) {
-        var context = thisDate;
+    function isBetween(d1, d2) {
+        var output1 = compare.call(this, d1);
+        var output2 = compare.call(this, d2);
 
-        return {
-            before: function(d) {
-                d = normalize.call(_forceDate(d));
-                return _getUTC(context) < _getUTC(d);
-            },
-            after: function(d) {
-                d = normalize.call(_forceDate(d));
-                return _getUTC(context) > _getUTC(d);
-            },
-            equal: function(d) {
-                d = normalize.call(_forceDate(d));
-                return _getUTC(context) === _getUTC(d);
-            }
-        };
+        return (output1 >= 0 && output2 <= 0);
+    }
+
+    function isEqual(d) {
+        return compare.call(this, d) === 0;
+    }
+
+    function isAfter(d) {
+        return compare.call(this, d) === 1;
+    }
+
+    function isBefore(d) {
+        return compare.call(this, d) === -1;
+    }
+
+    function compare(d) {
+        var thisDateUTC = _getUTC(this);
+        var dUTC = _getUTC(normalize.call(_forceDate(d)));
+
+        if(thisDateUTC > dUTC) {
+            return 1;
+        } else if(thisDateUTC < dUTC) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 
     function normalize(isEnd) {
@@ -43,7 +56,7 @@ function kwDate(date) {
 
     function daysBetween(d) {
         var d1 = normalize.call(this);
-        var d2 = normalize.call(d);
+        var d2 = normalize.call(_forceDate(d));
 
         return Math.round(Math.abs(_getUTC(d1) - _getUTC(d2)) / _day);
     }
@@ -64,7 +77,11 @@ function kwDate(date) {
         d.normalize = normalize;
         d.daysBetween = daysBetween;
         d.getDateAt = getDateAt;
-        d.compare = compare(date);
+        d.compare = compare;
+        d.isBefore = isBefore;
+        d.isAfter = isAfter;
+        d.isEqual = isEqual;
+        d.isBetween = isBetween;
 
         return d;
     }
@@ -74,7 +91,7 @@ function kwDate(date) {
     }
 
     function _forceDate(d) {
-        return typeof d === 'string' ? new Date(d) : d;
+        return typeof d === 'string' ? new Date(d.replace('-', '/')) : d;
     }
 
     return date;
