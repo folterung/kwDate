@@ -72,7 +72,9 @@ function kwDate(date) {
     }
 
     function _extend(d) {
-        if(_def(d.normalize) && _def(d.daysBetween) && _def(d.getDateAt) && _def(d.compare)) { return d; }
+        if(_def(d.normalize) && _def(d.daysBetween) && _def(d.getDateAt)
+            && _def(d.isBefore) && _def(d.isAfter) && _def(d.isEqual)
+            && _def(d.isBetween) && _def(d.compare)) { return d; }
 
         d.normalize = normalize;
         d.daysBetween = daysBetween;
