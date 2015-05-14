@@ -47,6 +47,10 @@ describe('kwDate', function() {
         expect(d1.getMilliseconds()).toEqual(0);
     });
 
+    it('.normalize should return a kwDate', function() {
+        expect(d.normalize('03/10/2015').getDateAt).toBeDefined();
+    });
+
     it('.normalize should take a boolean value set to true and return a flattened end date', function() {
         var d1 = d.normalize(true);
 

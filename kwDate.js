@@ -51,7 +51,7 @@ function kwDate(date) {
             d.setMilliseconds(0);
         }
 
-        return d;
+        return _extend(d);
     }
 
     function daysBetween(d) {
