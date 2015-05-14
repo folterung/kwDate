@@ -93,7 +93,14 @@ function kwDate(date) {
     }
 
     function _forceDate(d) {
-        return typeof d === 'string' ? new Date(d.replace('-', '/')) : d;
+        if(typeof d === 'string') {
+            var TIndex = d.indexOf('T');
+            var outputTime = TIndex > -1 ? d.substring(0, TIndex) : d;
+
+            d = new Date(outputTime.replace('-', '/'));
+        }
+
+        return d;
     }
 
     return date;

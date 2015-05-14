@@ -19,6 +19,8 @@ describe('kwDate', function() {
 
     it('should take a date string and return a date object', function() {
         expect(new kwDate('03/10/2015').toUTCString()).toEqual(new Date('03/10/2015').toUTCString());
+        expect(new kwDate('2015-03-10').toUTCString()).toEqual(new Date('03/10/2015').toUTCString());
+        expect(new kwDate('2015-03-10T04:00:00.000Z').toUTCString()).toEqual(new Date('03/10/2015').toUTCString());
     });
 
     it('should take a date and return a date object', function() {
