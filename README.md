@@ -34,6 +34,11 @@ Return a date 5 days before the initial date:
 
 Easily compare dates:
 
-    new kwDate('03/05/2015').compare.before('03/10/2015'); //true
-    new kwDate('03/15/2015').compare.after('03/10/2015'); //true
-    new kwDate('03/10/2015').compare.equal('03/10/2015'); //true
+    var d = new kwDate('03/05/2015');
+    d.isBefore('03/10/2015'); //true
+    d.isAfter('03/10/2015'); //false
+    d.isEqual('03/05/2015'); //true
+    d.compare('03/05/2015'); //0
+    d.compare('03/10/2015'); //-1
+    d.compare('03/03/2015'); //1
+    d.isBetween('03/03/2015', '03/20/2015'); //true
